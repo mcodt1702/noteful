@@ -1,0 +1,20 @@
+.displayNotes {
+  height: 100%;
+  width: 65%;
+  justify-content: flex-start;
+  background-color: #b8d8d8;
+}
+
+.notesli {
+  margin: 50px;
+  width: 180px;
+  height: 40px;
+  background-color: #eef5db;
+  border-radius: 10%;
+  text-align: center;
+  padding: 10px;
+}
+
+ul {
+  list-style-type: none;
+}

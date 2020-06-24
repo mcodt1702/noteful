@@ -1,0 +1,12 @@
+.headerstyling {
+  background-color: #4f6367;
+  text-align: center;
+  color: #eef5db;
+  font-size: 60px;
+  height: 100px;
+  width: 100%;
+}
+
+.headerstyling a {
+  text-decoration: none;
+}

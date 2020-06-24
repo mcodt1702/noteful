@@ -1,0 +1,17 @@
+.navBar {
+  justify-content: flex-start;
+  background-color: #7a9e9f;
+  width: 35%;
+  height: auto;
+  text-align: center;
+}
+
+.navBarlayout {
+  margin: 50px;
+  width: 180px;
+  height: 40px;
+  background-color: #bcd86f;
+  border-radius: 15%;
+  text-align: center;
+  padding: 10px;
+}
