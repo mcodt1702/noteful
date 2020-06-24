@@ -118,13 +118,17 @@ const notes = [
 ];
 
 export default function Notes(props) {
-  const poem = notes
-    .find((n) => n.folderId === props.match.params.individualNotelist)
-    .map((not) => <li>not</li>);
+  const list = notes.find(
+    (n) => n.folderId === props.match.params.individualNotelist
+  );
 
+  const finalist = notes.map((not, key = notes.id) => <li>{not.name}</li>);
+  const filteredList = finalist.filter(
+    (n) => n.folderId === props.match.params.individualNotelist
+  );
   return (
     <div className="displayNotes">
-      <ul>{poem}</ul>
+      <ul>{finalist}</ul>
     </div>
   );
 }
