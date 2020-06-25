@@ -1,4 +1,9 @@
-.display {
+ul {
+  list-style-type: none;
+}
+
+.global {
   display: flex;
-  height: 100%;
+  background-color: #b8d8d8;
+  height: auto;
 }
