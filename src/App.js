@@ -13,6 +13,10 @@ export default class App extends React.Component {
     this.state = { store };
   }
 
+  deleteNote = (e, id) => {
+    console.log(id);
+  };
+
   render() {
     return (
       <div>
@@ -22,7 +26,13 @@ export default class App extends React.Component {
           <Route path="/" render={() => <Aside folder={this.state.store} />} />
           <Route
             path="/notes/:id"
-            render={(rprops) => <Notes {...rprops} folder={this.state.store} />}
+            render={(rprops) => (
+              <Notes
+                {...rprops}
+                folder={this.state.store}
+                deleteNote={this.deleteNote}
+              />
+            )}
           />
         </div>
       </div>

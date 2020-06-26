@@ -5,12 +5,20 @@
   background-color: #b8d8d8;
 }
 
-li {
+.displayNotes li {
   margin: 20px;
-  width: 100px;
-  height: 20px;
+  width: 250px;
+  height: 30px;
   background-color: #eef5db;
   border-radius: 7%;
   text-align: center;
-  padding: 10px;
+  padding-top: 20px;
+  position: relative;
+}
+
+.displayNotes button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border-radius: 8%;
 }

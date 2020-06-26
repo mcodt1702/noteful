@@ -13,6 +13,13 @@ export default function Aside(props) {
             <Link to={`/notes/${file.id}`}>{file.name}</Link>
           </li>
         ))}
+        <li
+          onClick={(e) => {
+            console.log("adding note");
+          }}
+        >
+          Add a Note
+        </li>
       </ul>
     </div>
   );

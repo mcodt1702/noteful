@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Notes.css";
 
 export default function Notes(props) {
-  console.log(props.folder);
+  console.log(props.folder.notes);
 
   let array = props.folder.notes;
 
@@ -11,7 +11,14 @@ export default function Notes(props) {
 
   const found = array
     .filter((t) => t.folderId === props.match.params.id)
-    .map((nota) => <li>{nota.name}</li>);
+    .map((nota) => (
+      <li>
+        {nota.name}
+        <button onClick={(e) => props.deleteNote(e, props.folder.notes.id)}>
+          Delete
+        </button>
+      </li>
+    ));
 
   console.log(found);
 

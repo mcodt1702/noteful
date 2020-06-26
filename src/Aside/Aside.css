@@ -15,3 +15,17 @@
   text-align: center;
   padding: 10px;
 }
+
+.navBar li {
+  margin: 20px;
+  width: 100px;
+  height: 50px;
+  background-color: #eef5db;
+  border-radius: 7%;
+  text-align: center;
+  padding: 10px;
+}
+
+.navBar a {
+  text-decoration: none;
+}
