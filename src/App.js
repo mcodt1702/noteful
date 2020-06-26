@@ -17,6 +17,8 @@ export default class App extends React.Component {
     console.log(id);
   };
 
+  addNote = (e) => {};
+
   render() {
     return (
       <div>
