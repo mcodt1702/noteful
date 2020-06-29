@@ -13,10 +13,9 @@ export default function Notes(props) {
     .filter((t) => t.folderId === props.match.params.id)
     .map((nota) => (
       <li>
-        {nota.name}
-        <button onClick={(e) => props.deleteNote(e, props.folder.notes.id)}>
-          Delete
-        </button>
+        <Link to={"/notes/:id/expand"}>{nota.name}</Link>
+
+        <button onClick={(e) => props.deleteNote(e, nota.id)}>Delete</button>
       </li>
     ));
 
