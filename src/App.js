@@ -17,11 +17,11 @@ export default class App extends React.Component {
     super();
     this.state = { store };
   }
-
+  s;
   createFolder = (e, index) => {
     e.preventDefault();
 
-    let newFolder = { title: e.target.title.value, Id: 5 };
+    let newFolder = { title: e.target.title.value, id: 5 };
     console.log(newFolder);
     this.setState({
       store: [...this.state.store, newFolder],
