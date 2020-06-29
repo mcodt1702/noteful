@@ -15,6 +15,12 @@ export default class App extends React.Component {
 
   deleteNote = (e, id) => {
     console.log(id);
+    this.setState((state) => {
+      const store = state.store.notes.filter((item) => item.id !== id);
+      return {
+        store,
+      };
+    });
   };
 
   addNote = (e) => {};

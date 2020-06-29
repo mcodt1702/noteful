@@ -11,12 +11,10 @@ export default function Notes(props) {
 
   const found = array
     .filter((t) => t.folderId === props.match.params.id)
-    .map((nota) => (
-      <li>
+    .map((nota, index) => (
+      <li key={nota}>
         {nota.name}
-        <button onClick={(e) => props.deleteNote(e, props.folder.notes.id)}>
-          Delete
-        </button>
+        <button onClick={(e) => props.deleteNote(e, nota.id)}>Delete</button>
       </li>
     ));
 
