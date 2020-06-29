@@ -15,8 +15,8 @@ export default class App extends React.Component {
 
   deleteNote = (e, id) => {
     console.log(id);
-    let store = this.state.store.notes.filter((item) => item.id !== id);
-    this.setState({ store });
+    let notes = this.state.store.notes.filter((item) => item.id !== id);
+    this.setState({ store: [...this.state.store.folders, notes] });
   };
 
   addNote = (e) => {};
