@@ -3,17 +3,16 @@ import { Link } from "react-router-dom";
 import "./Notes.css";
 
 export default function Notes(props) {
-  console.log(props.folder.notes);
+  console.log(props.notes);
 
-  let array = props.folder.notes;
+  let { notes } = props;
+  let { id } = props.match.params;
 
-  const clave = props.match.params.id;
-
-  const found = array
-    .filter((t) => t.folderId === props.match.params.id)
+  const found = notes
+    .filter((note) => (id !== undefined ? note.folderId === id : true))
     .map((nota) => (
-      <li>
-        <Link to={"/notes/:id/expand"}>{nota.name}</Link>
+      <li key={nota.id}>
+        <Link to={`/note/${nota.id}`}>{nota.name}</Link>
 
         <button onClick={(e) => props.deleteNote(e, nota.id)}>Delete</button>
       </li>

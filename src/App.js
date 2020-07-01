@@ -1,30 +1,44 @@
 import React from "react";
 import Header from "./Header/Header";
 import Aside from "./Aside/Aside";
-import store from "./Folder/Folders";
+import store from "./store";
 import Notes from "./Notes/Notes";
-import Expand from "./Expand/Expand";
-import addANote from "./AddANote/AddANote";
+import Note from "./Note/Note";
+//import addANote from "./AddANote/AddANote";
 
 import AddAFolder from "./AddAFolder/AddAFolder";
 
 import "./App.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 //////////////
 export default class App extends React.Component {
   constructor() {
     super();
-    this.state = { store };
+    this.state = { ...store };
   }
   s;
-  createFolder = (e, index) => {
+  createFolder = (e, history) => {
     e.preventDefault();
 
-    let newFolder = { title: e.target.title.value, id: 5 };
+    let newFolder = {
+      name: e.target.title.value,
+      id: this.state.folders.length + 1,
+    };
     console.log(newFolder);
+    this.setState(
+      {
+        folders: [...this.state.folders, newFolder],
+      },
+      () => {
+        history.push("/");
+      }
+    );
+  };
+
+  deleteNote = (e, id) => {
     this.setState({
-      store: [...this.state.store, newFolder],
+      notes: this.state.notes.filter((item) => item.id !== id),
     });
   };
 
@@ -33,11 +47,34 @@ export default class App extends React.Component {
       <div>
         <Route path="/" component={Header} />
         <div className="global">
-          <Route path="/" render={() => <Aside folder={this.state.store} />} />
-
+          <Route
+            path="/"
+            render={(rprops) => <Aside {...rprops} {...this.state} />}
+          />
+          <Route
+            exact
+            path="/"
+            render={(rprops) => (
+              <Notes {...rprops} {...this.state} deleteNote={this.deleteNote} />
+            )}
+          />
+          <Route
+            path="/folder/:id"
+            render={(rprops) => (
+              <Notes {...rprops} {...this.state} deleteNote={this.deleteNote} />
+            )}
+          />
+          <Route
+            path="/note/:id"
+            render={(rprops) => (
+              <Note {...rprops} {...this.state} deleteNote={this.deleteNote} />
+            )}
+          />
           <Route
             path="/addAFolder"
-            render={() => <AddAFolder createFolder={this.createFolder} />}
+            render={(rprops) => (
+              <AddAFolder {...rprops} createFolder={this.createFolder} />
+            )}
           />
         </div>
       </div>

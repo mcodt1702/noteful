@@ -3,7 +3,7 @@ import React from "react";
 export default function AddAFolder(props) {
   return (
     <div className="addFolderForm">
-      <form onSubmit={(e) => props.createFolder(e)}>
+      <form onSubmit={(e) => props.createFolder(e, props.history)}>
         <input
           type="text"
           name="title"

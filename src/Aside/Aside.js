@@ -8,9 +8,9 @@ export default function Aside(props) {
     <div className="navBar">
       <ul>
         <h2>Folders</h2>
-        {props.folder.folders.map((file) => (
+        {props.folders.map((file) => (
           <li key={file.id}>
-            <Link to={`/notes/${file.id}`}>{file.name}</Link>
+            <Link to={`/folder/${file.id}`}>{file.name}</Link>
           </li>
         ))}
         <li>
