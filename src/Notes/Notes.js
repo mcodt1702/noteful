@@ -8,22 +8,12 @@ export default function Notes(props) {
   let { notes } = props;
   let { id } = props.match.params;
 
-<<<<<<< HEAD
-  const clave = props.match.params.id;
-
-  const found = array
-    .filter((t) => t.folderId === props.match.params.id)
-    .map((nota, index) => (
-      <li key={nota}>
-        {nota.name}
-=======
   const found = notes
     .filter((note) => (id !== undefined ? note.folderId === id : true))
     .map((nota) => (
       <li key={nota.id}>
         <Link to={`/note/${nota.id}`}>{nota.name}</Link>
 
->>>>>>> navigation
         <button onClick={(e) => props.deleteNote(e, nota.id)}>Delete</button>
       </li>
     ));

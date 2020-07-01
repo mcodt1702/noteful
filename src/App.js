@@ -21,12 +21,6 @@ export default class App extends React.Component {
   createFolder = (e, history) => {
     e.preventDefault();
 
-<<<<<<< HEAD
-  deleteNote = (e, id) => {
-    console.log(id);
-    let notes = this.state.store.notes.filter((item) => item.id !== id);
-    this.setState({ store: [...this.state.store.folders, notes] });
-=======
     let newFolder = {
       name: e.target.title.value,
       id: this.state.folders.length + 1,
@@ -40,7 +34,6 @@ export default class App extends React.Component {
         history.push("/");
       }
     );
->>>>>>> navigation
   };
 
   deleteNote = (e, id) => {
