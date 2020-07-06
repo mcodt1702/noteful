@@ -18,14 +18,16 @@ export default function Notes(props) {
       </li>
     ));
 
-  console.log(found);
-
   return (
     <div className="displayNotes">
       <ul>
         <h2>Notes</h2>
         {found}
+        <Link to="/addANote">
+          <li>Add a Note</li>
+        </Link>
       </ul>
+
       <Link to="/">
         <h2>Back to Noteful</h2>
       </Link>
