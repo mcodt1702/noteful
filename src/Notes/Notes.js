@@ -1,36 +1,40 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Notes.css";
+import Context from ".././Context";
 
-export default function Notes(props) {
-  console.log(props.notes);
+export default class Notes extends React.Component {
+  static contextType = Context;
+  render() {
+    let { notes } = this.context;
+    let { id } = this.props.match.params;
 
-  let { notes } = props;
-  let { id } = props.match.params;
+    const found = notes
+      .filter((note) => (id !== undefined ? note.folderId === id : true))
+      .map((nota) => (
+        <li key={nota.id}>
+          <Link to={`/note/${nota.id}`}>{nota.name}</Link>
 
-  const found = notes
-    .filter((note) => (id !== undefined ? note.folderId === id : true))
-    .map((nota) => (
-      <li key={nota.id}>
-        <Link to={`/note/${nota.id}`}>{nota.name}</Link>
+          <button onClick={(e) => this.context.deleteNote(e, nota.id)}>
+            Delete
+          </button>
+        </li>
+      ));
 
-        <button onClick={(e) => props.deleteNote(e, nota.id)}>Delete</button>
-      </li>
-    ));
+    return (
+      <div className="displayNotes">
+        <ul>
+          <h2>Notes</h2>
+          {found}
+          <Link to="/addANote">
+            <li>Add a Note</li>
+          </Link>
+        </ul>
 
-  return (
-    <div className="displayNotes">
-      <ul>
-        <h2>Notes</h2>
-        {found}
-        <Link to="/addANote">
-          <li>Add a Note</li>
+        <Link to="/">
+          <h2>Back to Noteful</h2>
         </Link>
-      </ul>
-
-      <Link to="/">
-        <h2>Back to Noteful</h2>
-      </Link>
-    </div>
-  );
+      </div>
+    );
+  }
 }

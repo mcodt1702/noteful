@@ -66,21 +66,8 @@ export default class App extends React.Component {
         <div>
           <Route path="/" component={Header} />
           <div className="global">
-            <Route
-              path="/"
-              render={(rprops) => <Aside {...rprops} {...this.state} />}
-            />
-            <Route
-              exact
-              path="/"
-              render={(rprops) => (
-                <Notes
-                  {...rprops}
-                  {...this.state}
-                  deleteNote={this.deleteNote}
-                />
-              )}
-            />
+            <Route path="/" component={Aside} />
+            <Route exact path="/" component={Notes} />
             <Route
               path="/folder/:id"
               render={(rprops) => (
@@ -107,7 +94,6 @@ export default class App extends React.Component {
                 <AddAFolder {...rprops} createFolder={this.createFolder} />
               )}
             />
-
             <Route
               path="/addANote"
               render={(rprops) => (
