@@ -74,33 +74,9 @@ export default class App extends React.Component {
             <Route path="/" component={Aside} />
             <Route exact path="/" component={Notes} />
             <Route path="/folder/:id" component={Notes} />
-
-            <Route
-              path="/note/:id"
-              render={(rprops) => (
-                <Note
-                  {...rprops}
-                  {...this.state}
-                  deleteNote={this.deleteNote}
-                />
-              )}
-            />
-            <Route
-              path="/addAFolder"
-              render={(rprops) => (
-                <AddAFolder {...rprops} createFolder={this.createFolder} />
-              )}
-            />
-            <Route
-              path="/addANote"
-              render={(rprops) => (
-                <AddANote
-                  {...rprops}
-                  {...this.state}
-                  createANote={this.createANote}
-                />
-              )}
-            />
+            <Route path="/note/:id" component={Note} />
+            <Route path="/addAFolder" component={AddAFolder} />
+            <Route path="/addANote" component={AddANote} />
           </div>
         </div>
       </Context.Provider>
