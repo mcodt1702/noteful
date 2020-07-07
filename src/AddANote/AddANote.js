@@ -13,7 +13,7 @@ export default class AddANote extends React.Component {
       <div className="addFolderForm">
         <form
           onSubmit={(e, id) => {
-            this.context.createANote(e, id);
+            this.context.createANote(e, this.props);
           }}
         >
           <input

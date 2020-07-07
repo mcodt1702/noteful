@@ -41,11 +41,11 @@ export default class App extends React.Component {
       });
     },
 
-    createANote: (e, id) => {
+    createANote: (e, rprops) => {
       e.preventDefault();
 
       let newNote = {
-        id: id,
+        id: rprops.match.id,
         name: e.target.name.value,
 
         modified: "",
@@ -54,9 +54,14 @@ export default class App extends React.Component {
       };
 
       console.log(newNote);
-      this.setState({
-        notes: [...this.state.notes, newNote],
-      });
+      this.setState(
+        {
+          notes: [...this.state.notes, newNote],
+        },
+        () => {
+          rprops.history.push("/");
+        }
+      );
     },
   };
 
@@ -68,16 +73,8 @@ export default class App extends React.Component {
           <div className="global">
             <Route path="/" component={Aside} />
             <Route exact path="/" component={Notes} />
-            <Route
-              path="/folder/:id"
-              render={(rprops) => (
-                <Notes
-                  {...rprops}
-                  {...this.state}
-                  deleteNote={this.deleteNote}
-                />
-              )}
-            />
+            <Route path="/folder/:id" component={Notes} />
+
             <Route
               path="/note/:id"
               render={(rprops) => (
