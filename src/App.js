@@ -15,7 +15,8 @@ import { Route } from "react-router-dom";
 //////////////
 export default class App extends React.Component {
   state = {
-    ...store,
+    folders: [],
+    notes: [],
 
     createFolder: (e, history) => {
       e.preventDefault();
@@ -64,6 +65,16 @@ export default class App extends React.Component {
       );
     },
   };
+
+  componentDidMount() {
+    fetch("http://localhost:9090/folders")
+      .then((res) => res.json())
+      .then((folders) => this.setState({ folders }));
+
+    fetch("http://localhost:9090/notes")
+      .then((res) => res.json())
+      .then((notes) => this.setState({ notes }));
+  }
 
   render() {
     return (
