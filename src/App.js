@@ -31,6 +31,14 @@ export default class App extends React.Component {
           folders: [...this.state.folders, newFolder],
         },
         () => {
+          fetch("http://localhost:9090/folders", {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newFolder),
+          }).then((res) => res.json());
+        },
+
+        () => {
           history.push("/");
         }
       );
@@ -44,6 +52,7 @@ export default class App extends React.Component {
 
     createANote: (e, rprops) => {
       e.preventDefault();
+      rprops.history.push("/");
 
       let newNote = {
         id: rprops.match.id,
@@ -60,7 +69,11 @@ export default class App extends React.Component {
           notes: [...this.state.notes, newNote],
         },
         () => {
-          rprops.history.push("/");
+          fetch("http://localhost:9090/notes", {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newNote),
+          }).then((res) => res.json());
         }
       );
     },
