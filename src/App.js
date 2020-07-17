@@ -6,6 +6,7 @@ import Notes from "./Notes/Notes";
 import Note from "./Note/Note";
 import AddANote from "./AddANote/AddANote";
 import Context from "./Context";
+import ExecutionError from "./ExecutionError";
 
 import AddAFolder from "./AddAFolder/AddAFolder";
 
@@ -81,8 +82,21 @@ export default class App extends React.Component {
 
   componentDidMount() {
     fetch("http://localhost:9090/folders")
+      .then((res) => {
+        // check if response is ok
+        console.log("About to check for errors");
+        if (!res.ok) {
+          console.log("An error did occur, let's throw an error.");
+          throw new Error("Something went wrong"); // throw an error
+        }
+        return res; // ok, so just continue
+      })
       .then((res) => res.json())
-      .then((folders) => this.setState({ folders }));
+      .then((folders) => this.setState({ folders }))
+      .catch((err) => {
+        // this catch handles the error condition
+        console.log("Handling the error here.", err);
+      });
 
     fetch("http://localhost:9090/notes")
       .then((res) => res.json())
@@ -95,12 +109,14 @@ export default class App extends React.Component {
         <div>
           <Route path="/" component={Header} />
           <div className="global">
-            <Route path="/" component={Aside} />
-            <Route exact path="/" component={Notes} />
-            <Route path="/folder/:id" component={Notes} />
-            <Route path="/note/:id" component={Note} />
-            <Route path="/addAFolder" component={AddAFolder} />
-            <Route path="/addANote" component={AddANote} />
+            <ExecutionError>
+              <Route path="/" component={Aside} />
+              <Route exact path="/" component={Notes} />
+              <Route path="/folder/:id" component={Notes} />
+              <Route path="/note/:id" component={Note} />
+              <Route path="/addAFolder" component={AddAFolder} />
+              <Route path="/addANote" component={AddANote} />
+            </ExecutionError>
           </div>
         </div>
       </Context.Provider>
