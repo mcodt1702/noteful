@@ -5,7 +5,9 @@ import Context from ".././Context";
 
 export default class Note extends React.Component {
   static contextType = Context;
+
   render() {
+    console.log(this.props.match.params.id);
     const note = this.context.notes.find(
       (note) => note.id === this.props.match.params.id
     );

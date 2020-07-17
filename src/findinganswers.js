@@ -37,7 +37,7 @@ export default class AddANote extends React.Component {
   }
 
   validateContent() {
-    const content = this.state.content.value.trim();
+    const content = this.state.value.trim();
     if (content.length === 0) {
       return "You need to add content to your note";
     } else if (content.length < 3) {
@@ -53,7 +53,7 @@ export default class AddANote extends React.Component {
     return (
       <div className="addFolderForm">
         <form
-          onSubmit={(e) => {
+          onSubmit={(e, id) => {
             this.context.createANote(e, this.props);
           }}
         >
@@ -77,7 +77,7 @@ export default class AddANote extends React.Component {
             onChange={(e) => this.contentUpdate(e.target.value)}
           />
           {this.state.content.touched && (
-            <ValidationError message={this.validateContent()} />
+            <ValidationError message={this.validateName()} />
           )}
 
           <select name="folders">{addNote}</select>

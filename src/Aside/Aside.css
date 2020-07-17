@@ -29,3 +29,8 @@
 .navBar a {
   text-decoration: none;
 }
+
+.errorFetching {
+  color: red;
+  font-size: larger;
+}
