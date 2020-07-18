@@ -64,6 +64,7 @@ export default class AddANote extends React.Component {
             aria-label="Folder Title"
             value={this.state.name.value}
             onChange={(e) => this.nameUpdate(e.target.value)}
+            required
           />
           {this.state.name.touched && (
             <ValidationError message={this.validateName()} />
@@ -75,6 +76,7 @@ export default class AddANote extends React.Component {
             aria-label="add a note"
             value={this.state.content.value}
             onChange={(e) => this.contentUpdate(e.target.value)}
+            required
           />
           {this.state.content.touched && (
             <ValidationError message={this.validateContent()} />

@@ -4,17 +4,21 @@ export default class ExecutionError extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hasError: false,
+      error: null,
     };
   }
 
   static getDerivedStateFromError(error) {
-    return { hasError: true };
+    return { error };
   }
 
   render() {
-    if (this.state.hasError) {
-      return <h2>Could not execute your request.</h2>;
+    if (this.state.error) {
+      return (
+        <div className="errorpage">
+          <h2>Could not execute your request.</h2>;
+        </div>
+      );
     }
     return this.props.children;
   }
