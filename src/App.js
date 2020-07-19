@@ -113,8 +113,13 @@ export default class App extends React.Component {
               <Route path="/" component={Aside} />
               <Route exact path="/" component={Notes} />
               <Route path="/folder/:id" component={Notes} />
+            </ExecutionError>
+            <ExecutionError>
               <Route path="/note/:id" component={Note} />
+            </ExecutionError>
+            <ExecutionError>
               <Route path="/addAFolder" component={AddAFolder} />
+
               <Route path="/addANote" component={AddANote} />
             </ExecutionError>
           </div>
