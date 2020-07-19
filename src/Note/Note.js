@@ -1,5 +1,5 @@
 import React from "react";
-//import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import "./Note.css";
 import Context from ".././Context";
 
@@ -19,3 +19,7 @@ export default class Note extends React.Component {
     );
   }
 }
+
+Note.propTypes = {
+  value: PropTypes.string.isRequired,
+};

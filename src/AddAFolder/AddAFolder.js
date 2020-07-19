@@ -1,5 +1,6 @@
 import React from "react";
 import Context from ".././Context";
+import PropTypes from "prop-types";
 
 export default class AddAFolder extends React.Component {
   static contextType = Context;
@@ -27,3 +28,7 @@ export default class AddAFolder extends React.Component {
     );
   }
 }
+
+AddAFolder.propTypes = {
+  value: PropTypes.string.isRequired,
+};

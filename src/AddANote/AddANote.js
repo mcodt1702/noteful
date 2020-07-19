@@ -1,6 +1,7 @@
 import React from "react";
 import Context from ".././Context";
 import ValidationError from "../ValidationError/ValidationError";
+import PropTypes from "prop-types";
 
 export default class AddANote extends React.Component {
   static contextType = Context;
@@ -94,3 +95,7 @@ export default class AddANote extends React.Component {
     );
   }
 }
+
+AddANote.propTypes = {
+  value: PropTypes.string.isRequired,
+};
