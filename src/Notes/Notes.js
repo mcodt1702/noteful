@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Notes.css";
 import Context from ".././Context";
+import PropTypes from "prop-types";
 
 export default class Notes extends React.Component {
   static contextType = Context;
@@ -38,3 +39,7 @@ export default class Notes extends React.Component {
     );
   }
 }
+
+Notes.propTypes = {
+  value: PropTypes.array,
+};

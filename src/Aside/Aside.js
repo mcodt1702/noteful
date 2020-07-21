@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Aside.css";
 import Context from ".././Context";
-import PropTypes from "prop-types";
+
 export default class Aside extends React.Component {
   static contextType = Context;
 
@@ -33,7 +33,3 @@ export default class Aside extends React.Component {
     );
   }
 }
-
-Aside.propTypes = {
-  value: PropTypes.string.isRequired,
-};

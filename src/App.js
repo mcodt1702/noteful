@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header/Header";
 import Aside from "./Aside/Aside";
-import store from "./store";
+
 import Notes from "./Notes/Notes";
 import Note from "./Note/Note";
 import AddANote from "./AddANote/AddANote";
