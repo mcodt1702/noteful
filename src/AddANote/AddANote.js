@@ -2,6 +2,7 @@ import React from "react";
 import Context from ".././Context";
 import ValidationError from "../ValidationError/ValidationError";
 import PropTypes from "prop-types";
+import "./AddaNote.css";
 
 export default class AddANote extends React.Component {
   static contextType = Context;
@@ -52,7 +53,8 @@ export default class AddANote extends React.Component {
     ));
 
     return (
-      <div className="addFolderForm">
+      <div className="addNoteForm">
+        <div className="addNoteHeader">Please add a Note</div>
         <form
           onSubmit={(e) => {
             this.context.createANote(e, this.props);
@@ -61,6 +63,7 @@ export default class AddANote extends React.Component {
           <input
             type="text"
             name="name"
+            className="namespace"
             placeholder="Title"
             aria-label="Folder Title"
             value={this.state.name.value}
