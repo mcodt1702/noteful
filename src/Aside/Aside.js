@@ -21,8 +21,8 @@ export default class Aside extends React.Component {
           <h2>Folders</h2>
           {error}
           {this.context.folders.map((file) => (
-            <li key={file.id}>
-              <Link to={`/folder/${file.id}`}>{file.name}</Link>
+            <li key={file.folder_id}>
+              <Link to={`/folder/${file.folder_id}`}>{file.name}</Link>
             </li>
           ))}
           <li>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Notes.css";
-import Context from ".././Context";
+import Context from "../Context";
 import PropTypes from "prop-types";
 
 export default class Notes extends React.Component {
@@ -11,16 +11,8 @@ export default class Notes extends React.Component {
     let { id } = this.props.match.params;
 
     const found = notes
-      .filter((note) => (id !== undefined ? note.folderId === id : true))
-      .map((nota) => (
-        <li key={nota.id}>
-          <Link to={`/note/${nota.id}`}>{nota.name}</Link>
-
-          <button onClick={(e) => this.context.deleteNote(e, nota.id)}>
-            Delete
-          </button>
-        </li>
-      ));
+      .filter((note) => (id !== undefined ? note.id === id : true))
+      .map((note) => <li key={note.note_id}>{note.name}</li>);
 
     return (
       <div className="displayNotes">
@@ -39,7 +31,3 @@ export default class Notes extends React.Component {
     );
   }
 }
-
-Notes.propTypes = {
-  value: PropTypes.array,
-};

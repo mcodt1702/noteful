@@ -5,6 +5,5 @@ ul {
 .global {
   display: flex;
   background-color: #b8d8d8;
-  height: auto;
   position: relative;
 }

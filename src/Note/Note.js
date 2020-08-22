@@ -10,7 +10,7 @@ export default class Note extends React.Component {
     console.log(this.props.match.params.id);
     const note = this.context.notes.find(
       (note) => note.id === this.props.match.params.id
-    );
+    ) || { name: "", content: "" };
     return (
       <div className="note">
         <h2>{note.name}</h2>
@@ -21,5 +21,5 @@ export default class Note extends React.Component {
 }
 
 Note.propTypes = {
-  value: PropTypes.string.isRequired,
+  match: PropTypes.object,
 };

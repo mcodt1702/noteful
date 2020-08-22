@@ -49,7 +49,10 @@ export default class AddANote extends React.Component {
 
   render() {
     const addNote = this.context.folders.map((folde) => (
-      <option value={folde.id}> {folde.name} </option>
+      <option key={folde.id} value={folde.id}>
+        {" "}
+        {folde.name}{" "}
+      </option>
     ));
 
     return (
@@ -100,5 +103,5 @@ export default class AddANote extends React.Component {
 }
 
 AddANote.propTypes = {
-  value: PropTypes.string.isRequired,
+  history: PropTypes.object,
 };

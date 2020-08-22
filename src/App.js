@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./Header/Header";
 import Aside from "./Aside/Aside";
 
-import Notes from "./Notes/Notes";
+import Folders from "./Folders/Folders";
 import Note from "./Note/Note";
 import AddANote from "./AddANote/AddANote";
 import Context from "./Context";
@@ -32,7 +32,7 @@ export default class App extends React.Component {
           folders: [...this.state.folders, newFolder],
         },
         () => {
-          fetch("http://localhost:9090/folders", {
+          fetch("http://localhost:8000/api/folders", {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newFolder),
@@ -56,32 +56,33 @@ export default class App extends React.Component {
       rprops.history.push("/");
 
       let newNote = {
-        id: rprops.match.id,
         name: e.target.name.value,
-
-        modified: "",
+        modified: new Date(),
         folderId: e.target.folders.value,
         content: e.target.content.value,
       };
 
       console.log(newNote);
-      this.setState(
-        {
-          notes: [...this.state.notes, newNote],
-        },
-        () => {
-          fetch("http://localhost:9090/notes", {
-            method: "post",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newNote),
-          }).then((res) => res.json());
-        }
-      );
+      fetch("http://localhost:8000/api/notes", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newNote),
+      })
+        .then((res) => res.json())
+        .then((newNote) => {
+          this.setState({
+            notes: [...this.state.notes, newNote],
+          });
+        });
     },
   };
 
   componentDidMount() {
-    fetch("http://localhost:9090/folders")
+    fetch("http://localhost:8000/api/notes")
+      .then((res) => res.json())
+      .then((notes) => this.setState({ notes }));
+
+    fetch("http://localhost:8000/api/folders")
       .then((res) => {
         // check if response is ok
         console.log("About to check for errors");
@@ -97,10 +98,6 @@ export default class App extends React.Component {
         // this catch handles the error condition
         console.log("Handling the error here.", err);
       });
-
-    fetch("http://localhost:9090/notes")
-      .then((res) => res.json())
-      .then((notes) => this.setState({ notes }));
   }
 
   render() {
@@ -111,11 +108,11 @@ export default class App extends React.Component {
           <div className="global">
             <ExecutionError>
               <Route path="/" component={Aside} />
-              <Route exact path="/" component={Notes} />
-              <Route path="/folder/:id" component={Notes} />
+              <Route exact path="/" component={Folders} />
+              <Route path="/api/folder/:id" component={Folders} />
             </ExecutionError>
             <ExecutionError>
-              <Route path="/note/:id" component={Note} />
+              <Route path="/api/note/:id" component={Note} />
             </ExecutionError>
             <ExecutionError>
               <Route path="/addAFolder" component={AddAFolder} />
