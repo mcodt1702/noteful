@@ -15,7 +15,11 @@ export default class Notes extends React.Component {
       .map((note) => (
         <li key={note.note_id}>
           <Link to={`/note/${note.note_id}`}>{note.name}</Link>
-          <button onClick={this.context.deleteNote(note.note_id)}>
+          <button
+            onClick={() => {
+              this.context.deleteNote(note.note_id);
+            }}
+          >
             Delete
           </button>
         </li>
@@ -31,8 +35,8 @@ export default class Notes extends React.Component {
           </Link>
         </ul>
 
-        <Link to="/">
-          <h2>Back to Noteful</h2>
+        <Link id="backToNoteful" to="/">
+          Back to Noteful
         </Link>
       </div>
     );

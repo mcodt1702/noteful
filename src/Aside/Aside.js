@@ -23,6 +23,14 @@ export default class Aside extends React.Component {
           {this.context.folders.map((file) => (
             <li key={file.folder_id}>
               <Link to={`/folder/${file.folder_id}`}>{file.name}</Link>
+              <button
+                className="delete"
+                onClick={() => {
+                  this.context.deleteFolder(file.folder_id);
+                }}
+              >
+                Delete
+              </button>
             </li>
           ))}
           <li>

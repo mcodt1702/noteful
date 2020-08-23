@@ -49,7 +49,7 @@ export default class AddANote extends React.Component {
 
   render() {
     const addNote = this.context.folders.map((folde) => (
-      <option key={folde.id} value={folde.id}>
+      <option key={folde.folder_id} value={folde.folder_id}>
         {" "}
         {folde.name}{" "}
       </option>

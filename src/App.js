@@ -32,7 +32,7 @@ export default class App extends React.Component {
           folders: [...this.state.folders, newFolder],
         },
         () => {
-          fetch("http://localhost:8000/api/folders", {
+          fetch("http://localhost:8000/folders", {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newFolder),
@@ -44,12 +44,25 @@ export default class App extends React.Component {
         }
       );
     },
+    deleteFolder: (id) => {
+      fetch(`http://localhost:8000/folders/${id}`, {
+        method: "delete",
+        headers: { "Content-type": "application/jason" },
+      });
+      const idp = parseInt(id);
+      console.log(id);
+      this.setState({
+        folders: this.state.folders.filter(
+          (folder) => folder.folder_id !== idp
+        ),
+      });
+    },
 
     deleteNote: (id) => {
-      // fetch(`http://localhost:8000/notes/${id}`, {
-      //   method: "delete",
-      //   headers: { "Content-type": "application/jason" },
-      // });
+      fetch(`http://localhost:8000/notes/${id}`, {
+        method: "delete",
+        headers: { "Content-type": "application/jason" },
+      });
       const idp = parseInt(id);
       console.log(id);
       this.setState({
@@ -59,12 +72,12 @@ export default class App extends React.Component {
 
     createANote: (e, rprops) => {
       e.preventDefault();
-      rprops.history.push("/");
+      rprops.history.push(`/folder/${e.target.folders.value}`);
 
       let newNote = {
         name: e.target.name.value,
         modified: new Date(),
-        folderId: e.target.folders.value,
+        folder_id: e.target.folders.value,
         content: e.target.content.value,
       };
 

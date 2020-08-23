@@ -2,7 +2,7 @@
   justify-content: flex-start;
   background-color: #7a9e9f;
   width: 20%;
-  min-width: 200px;
+  min-width: 300px;
   text-align: center;
 }
 
@@ -18,12 +18,13 @@
 
 .navBar li {
   margin: 20px;
-  width: 100px;
+  width: 200px;
   height: 50px;
   background-color: #eef5db;
   border-radius: 7%;
   text-align: center;
   padding: 10px;
+  position: relative;
 }
 
 .navBar a {
@@ -33,4 +34,11 @@
 .errorFetching {
   color: red;
   font-size: larger;
+}
+
+.delete {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border-radius: 8%;
 }
