@@ -8,11 +8,18 @@ export default class Notes extends React.Component {
   static contextType = Context;
   render() {
     let { notes } = this.context;
-    let { id } = this.props.match.params;
+    let id = this.props.match.params.id;
 
     const found = notes
-      .filter((note) => (id !== undefined ? note.id === id : true))
-      .map((note) => <li key={note.note_id}>{note.name}</li>);
+      .filter((note) => note.folder_id === parseInt(id))
+      .map((note) => (
+        <li key={note.note_id}>
+          <Link to={`/note/${note.note_id}`}>{note.name}</Link>
+          <button onClick={this.context.deleteNote(note.note_id)}>
+            Delete
+          </button>
+        </li>
+      ));
 
     return (
       <div className="displayNotes">

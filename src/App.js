@@ -45,9 +45,15 @@ export default class App extends React.Component {
       );
     },
 
-    deleteNote: (e, id) => {
+    deleteNote: (id) => {
+      // fetch(`http://localhost:8000/notes/${id}`, {
+      //   method: "delete",
+      //   headers: { "Content-type": "application/jason" },
+      // });
+      const idp = parseInt(id);
+      console.log(id);
       this.setState({
-        notes: this.state.notes.filter((item) => item.id !== id),
+        notes: this.state.notes.filter((note) => note.note_id !== idp),
       });
     },
 
@@ -63,7 +69,7 @@ export default class App extends React.Component {
       };
 
       console.log(newNote);
-      fetch("http://localhost:8000/api/notes", {
+      fetch("http://localhost:8000/notes", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newNote),
@@ -78,11 +84,11 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:8000/api/notes")
+    fetch("http://localhost:8000/notes")
       .then((res) => res.json())
       .then((notes) => this.setState({ notes }));
 
-    fetch("http://localhost:8000/api/folders")
+    fetch("http://localhost:8000/folders")
       .then((res) => {
         // check if response is ok
         console.log("About to check for errors");
@@ -109,10 +115,10 @@ export default class App extends React.Component {
             <ExecutionError>
               <Route path="/" component={Aside} />
               <Route exact path="/" component={Folders} />
-              <Route path="/api/folder/:id" component={Folders} />
+              <Route path="/folder/:id" component={Folders} />
             </ExecutionError>
             <ExecutionError>
-              <Route path="/api/note/:id" component={Note} />
+              <Route path="/note/:id" component={Note} />
             </ExecutionError>
             <ExecutionError>
               <Route path="/addAFolder" component={AddAFolder} />
