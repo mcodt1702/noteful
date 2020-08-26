@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header/Header";
 import Aside from "./Aside/Aside";
-
+import Context from "./Context";
 import Folders from "./Folders/Folders";
 import Note from "./Note/Note";
 import AddANote from "./AddANote/AddANote";

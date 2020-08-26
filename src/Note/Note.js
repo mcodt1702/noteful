@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./Note.css";
 import Context from ".././Context";
-import { Link } from "react-router-dom";
 
 export default class Note extends React.Component {
   static contextType = Context;
@@ -18,10 +17,10 @@ export default class Note extends React.Component {
         <p>{note.content}</p>
         <div>
           {" "}
-          <Link id="backToNoteful" to="/folders">
+          <button onClick={() => this.props.history.goBack()}>
             {" "}
             Back to Folder
-          </Link>{" "}
+          </button>{" "}
         </div>
       </div>
     );
