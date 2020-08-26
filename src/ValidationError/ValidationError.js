@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 function ValidationError(props) {
   if (props.message) {
@@ -8,9 +7,5 @@ function ValidationError(props) {
 
   return <> </>;
 }
-
-AddAFolder.propTypes = {
-  messsage: PropTypes.object,
-};
 
 export default ValidationError;

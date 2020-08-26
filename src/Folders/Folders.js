@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 
 export default class Notes extends React.Component {
   static contextType = Context;
+
   render() {
     let { notes } = this.context;
     let id = this.props.match.params.id;
@@ -42,3 +43,10 @@ export default class Notes extends React.Component {
     );
   }
 }
+Notes.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.node,
+    }).isRequired,
+  }),
+};

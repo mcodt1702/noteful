@@ -5,7 +5,7 @@ import Context from "./Context";
 import Folders from "./Folders/Folders";
 import Note from "./Note/Note";
 import AddANote from "./AddANote/AddANote";
-import Context from "./Context";
+
 import ExecutionError from "./ExecutionError";
 
 import AddAFolder from "./AddAFolder/AddAFolder";
