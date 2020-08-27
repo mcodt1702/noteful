@@ -32,7 +32,7 @@ export default class App extends React.Component {
           folders: [...this.state.folders, newFolder],
         },
         () => {
-          fetch("http://localhost:8000/folders", {
+          fetch("https://nameless-mountain-76015.herokuapp.com/folders", {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newFolder),
@@ -45,7 +45,7 @@ export default class App extends React.Component {
       );
     },
     deleteFolder: (id) => {
-      fetch(`http://localhost:8000/folders/${id}`, {
+      fetch(`https://nameless-mountain-76015.herokuapp.com/folders/${id}`, {
         method: "delete",
         headers: { "Content-type": "application/jason" },
       });
@@ -59,7 +59,7 @@ export default class App extends React.Component {
     },
 
     deleteNote: (id) => {
-      fetch(`http://localhost:8000/notes/${id}`, {
+      fetch(`https://nameless-mountain-76015.herokuapp.com/notes/${id}`, {
         method: "delete",
         headers: { "Content-type": "application/jason" },
       });
@@ -82,7 +82,7 @@ export default class App extends React.Component {
       };
 
       console.log(newNote);
-      fetch("http://localhost:8000/notes", {
+      fetch("https://nameless-mountain-76015.herokuapp.com/notes", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newNote),
@@ -97,11 +97,11 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:8000/notes")
+    fetch("https://nameless-mountain-76015.herokuapp.com/notes")
       .then((res) => res.json())
       .then((notes) => this.setState({ notes }));
 
-    fetch("http://localhost:8000/folders")
+    fetch("https://nameless-mountain-76015.herokuapp.com/folders")
       .then((res) => {
         // check if response is ok
         console.log("About to check for errors");
