@@ -87,19 +87,45 @@ export default class App extends React.Component {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newNote),
       })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Something went wrong"); // throw an error
+          }
+          return res;
+        })
+
         .then((res) => res.json())
         .then((newNote) => {
           this.setState({
             notes: [...this.state.notes, newNote],
           });
+        })
+        .catch((err) => {
+          alert(
+            "There was a problem coneectig to the server. We can't create a new Note",
+            err
+          );
         });
     },
   };
 
   componentDidMount() {
     fetch("https://nameless-mountain-76015.herokuapp.com/notes")
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Something went wrong"); // throw an error
+        }
+        return res;
+      })
       .then((res) => res.json())
-      .then((notes) => this.setState({ notes }));
+      .then((notes) => this.setState({ notes }))
+      .catch((err) => {
+        alert(
+          "There was a problem coneectig to the server. We can't get your Notes",
+          err
+        );
+        console.log("Handling the error here.", err);
+      });
 
     fetch("https://nameless-mountain-76015.herokuapp.com/folders")
       .then((res) => {
@@ -114,7 +140,9 @@ export default class App extends React.Component {
       .then((res) => res.json())
       .then((folders) => this.setState({ folders }))
       .catch((err) => {
-        // this catch handles the error condition
+        alert(
+          "There was a problem coneectig to the server. We can't get your folders"
+        );
         console.log("Handling the error here.", err);
       });
   }
