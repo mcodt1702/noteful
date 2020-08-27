@@ -32,7 +32,7 @@ export default class App extends React.Component {
           folders: [...this.state.folders, newFolder],
         },
         () => {
-          fetch("https://nameless-mountain-76015.herokuapp.com/folders", {
+          fetch("http://localhost:8000/folders", {
             method: "post",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newFolder),
@@ -45,7 +45,7 @@ export default class App extends React.Component {
       );
     },
     deleteFolder: (id) => {
-      fetch(`https://nameless-mountain-76015.herokuapp.com/folders/${id}`, {
+      fetch(`hhttp://localhost:8000/folders/${id}`, {
         method: "delete",
         headers: { "Content-type": "application/jason" },
       });
@@ -59,7 +59,7 @@ export default class App extends React.Component {
     },
 
     deleteNote: (id) => {
-      fetch(`https://nameless-mountain-76015.herokuapp.com/notes/${id}`, {
+      fetch(`http://localhost:8000/notes/${id}`, {
         method: "delete",
         headers: { "Content-type": "application/jason" },
       });
@@ -82,7 +82,7 @@ export default class App extends React.Component {
       };
 
       console.log(newNote);
-      fetch("https://nameless-mountain-76015.herokuapp.com/notes", {
+      fetch("http://localhost:8000/notes", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newNote),
@@ -110,7 +110,7 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
-    fetch("https://nameless-mountain-76015.herokuapp.com/notes")
+    fetch("http://localhost:8000/notes")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Something went wrong"); // throw an error
@@ -127,7 +127,7 @@ export default class App extends React.Component {
         console.log("Handling the error here.", err);
       });
 
-    fetch("https://nameless-mountain-76015.herokuapp.com/folders")
+    fetch("http://localhost:8000/folders")
       .then((res) => {
         // check if response is ok
         console.log("About to check for errors");
