@@ -27,16 +27,16 @@ export default class App extends React.Component {
         id: this.state.folders.length + 1,
       };
       console.log(newFolder);
+
+      fetch("http://localhost:8000/folders", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newFolder),
+      }).then((res) => res.json());
+
       this.setState(
         {
           folders: [...this.state.folders, newFolder],
-        },
-        () => {
-          fetch("http://localhost:9090/folders", {
-            method: "post",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(newFolder),
-          }).then((res) => res.json());
         },
 
         () => {
@@ -45,7 +45,7 @@ export default class App extends React.Component {
       );
     },
     deleteFolder: (id) => {
-      fetch(`hhttp://localhost:9090/folders/${id}`, {
+      fetch(`http://localhost:8000/folders/${id}`, {
         method: "delete",
         headers: { "Content-type": "application/jason" },
       });
@@ -59,7 +59,7 @@ export default class App extends React.Component {
     },
 
     deleteNote: (id) => {
-      fetch(`http://localhost:9090/notes/${id}`, {
+      fetch(`http://localhost:8000/notes/${id}`, {
         method: "delete",
         headers: { "Content-type": "application/jason" },
       });
@@ -82,7 +82,7 @@ export default class App extends React.Component {
       };
 
       console.log(newNote);
-      fetch("http://localhost:9090/notes", {
+      fetch("http://localhost:8000/notes", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newNote),
@@ -110,7 +110,7 @@ export default class App extends React.Component {
   };
 
   componentDidMount() {
-    fetch("http://localhost:9090/notes")
+    fetch("http://localhost:8000/notes")
       .then((res) => {
         if (!res.ok) {
           throw new Error("Something went wrong"); // throw an error
@@ -127,7 +127,7 @@ export default class App extends React.Component {
         console.log("Handling the error here.", err);
       });
 
-    fetch("http://localhost:9090/folders")
+    fetch("http://localhost:8000/folders")
       .then((res) => {
         // check if response is ok
         console.log("About to check for errors");
