@@ -10,7 +10,8 @@ export default class AddAFolder extends React.Component {
     super();
 
     this.state = {
-      name: "",
+      fields: { name: "" },
+
       touched: false,
     };
   }
@@ -19,7 +20,7 @@ export default class AddAFolder extends React.Component {
     this.setState({ name: { value: name, touched: true } });
   }
   validateName() {
-    const name = this.state.name.value.trim();
+    const name = this.state.fields.name.value.trim();
     if (name.length === 0) {
       return "Name is required";
     } else if (name.length < 4) {
@@ -38,11 +39,11 @@ export default class AddAFolder extends React.Component {
             name="title"
             placeholder="Title"
             aria-label="Folder Title"
-            value={this.state.name.value}
+            value={this.state.fields.name.value}
             onChange={(e) => this.nameUpdate(e.target.value)}
             required
           />
-          {this.state.name.touched && (
+          {this.state.fields.name.touched && (
             <ValidationError message={this.validateName()} />
           )}
           <input

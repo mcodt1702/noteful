@@ -24,7 +24,6 @@ export default class App extends React.Component {
 
       let newFolder = {
         name: e.target.title.value,
-        id: this.state.folders.length + 1,
       };
       console.log(newFolder);
 
@@ -32,18 +31,29 @@ export default class App extends React.Component {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newFolder),
-      }).then((res) => res.json());
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Something went wrong"); // throw an error
+          }
+          return res;
+        })
 
-      this.setState(
-        {
-          folders: [...this.state.folders, newFolder],
-        },
+        .then((res) => res.json())
+        .then((newFolder) => {
+          this.setState({ folders: [...this.state.folders, newFolder] });
+        })
 
-        () => {
-          history.push("/");
-        }
-      );
+        .catch((err) => {
+          alert(
+            "There was a problem coneectig to the server. We can't create a new Folder",
+            err
+          );
+        });
+
+      history.push("/");
     },
+
     deleteFolder: (id) => {
       fetch(`http://localhost:8000/folders/${id}`, {
         method: "delete",

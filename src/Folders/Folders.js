@@ -32,7 +32,9 @@ export default class Notes extends React.Component {
           <h2>Notes</h2>
           {found}
           <Link to="/addANote">
-            <li>Add a Note</li>
+            <li>
+              <button>Add a Note</button>
+            </li>
           </Link>
         </ul>
 

@@ -34,7 +34,9 @@ export default class Aside extends React.Component {
             </li>
           ))}
           <li>
-            <Link to={"/addAFolder"}> Add a Folder</Link>
+            <Link to={"/addAFolder"}>
+              <button>Add a Folder</button>
+            </Link>
           </li>
         </ul>
       </div>
