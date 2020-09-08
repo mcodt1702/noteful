@@ -116,8 +116,8 @@ export default class App extends React.Component {
             err
           );
         });
-
-      rprops.params.match.history.push("/");
+      const { history } = rprops;
+      history.push(`/folder/${e.target.folders.value}`);
     },
   };
 

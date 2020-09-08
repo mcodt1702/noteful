@@ -26,13 +26,11 @@ export default class Notes extends React.Component {
         </li>
       ));
 
-    const folderName = this.context.folders[id - 1];
-    console.log(id);
-    console.log(folderName);
     return (
       <div className="displayNotes">
         <ul>
           <h2>Notes</h2>
+
           {found}
           <Link to="/addANote">
             <li>
