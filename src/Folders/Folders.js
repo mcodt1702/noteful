@@ -26,7 +26,7 @@ export default class Notes extends React.Component {
         </li>
       ));
 
-    const folderName = this.context.folders[id].name;
+    const folderName = this.context.folders[id];
 
     console.log(folderName);
     return (
